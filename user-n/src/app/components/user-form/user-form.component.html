@@ -1,0 +1,10 @@
+<h2>{{userId ? 'Edit':'Add'}}</h2>
+<form [formGroup]="userForm" (ngSubmit)="submitForm()">
+<label>Name</label>
+<input formControlName="name" class="form-control">
+<label>Email</label>
+<input formControlName="email" class="form-control">
+
+<button type="submit" class="btn btn-success">Save</button>
+<a routerLink="/" class="btn btn-secondary">Cancel</a>
+</form>

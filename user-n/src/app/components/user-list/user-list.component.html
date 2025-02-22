@@ -1,0 +1,37 @@
+<h2>User List</h2>
+
+<!-- Search Input -->
+<input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Search by name or email..." class="form-control mb-3" />
+
+<!-- Add User Button -->
+<a routerLink="/add-user" class="btn btn-primary">Add User</a>
+
+<!-- User Table -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of paginatedUsers">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <a [routerLink]="['/edit-user', user.id]" class="btn btn-warning">Edit</a>
+                <button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Pagination Controls -->
+<div class="pagination">
+  <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+  <span> Page {{ currentPage }} of {{ totalPages }} </span>
+  <button (click)="nextPage()" [disabled]="currentPage >= totalPages">Next</button>
+</div>
